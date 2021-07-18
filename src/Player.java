@@ -56,11 +56,11 @@ public abstract class Player implements Comparable<Player> {
      */
     @Override
     public int compareTo(Player p) {
-        if (susLevel > p.getSusLevel()) {
-            return 1;
+        if (susLevel < p.getSusLevel()) {
+            return -1;
         }
-        else if (susLevel < p.getSusLevel()) {
-            return - 1;
+        else if (susLevel > p.getSusLevel()) {
+            return 1;
         }
         return 0;
     }
