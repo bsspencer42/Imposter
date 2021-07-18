@@ -49,7 +49,23 @@ public class RedAstronaut extends Player implements Impostor {
 
     // Imposter Method Definitions
     public void freeze(Player p) {
-        return;
+        // Do not freeze if is an imposter or player already frozen or attacking player is frozen
+        if (p instanceof RedAstronaut || p.isFrozen() || this.isFrozen()) {
+            System.out.println("You can't freeze me BIIITCH!");
+            return;
+        }
+        // Attempt to freeze
+        // Successful freeze
+        if (this.getSusLevel() < p.getSusLevel()) {
+            p.setFrozen(true);
+            return;
+        }
+        else {
+            this.setSusLevel(this.getSusLevel()*2);
+        }
+        gameOver();
+        // Unsuccessful freeze
+
     }
 
     public void sabotage(Player p) {

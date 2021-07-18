@@ -5,8 +5,8 @@ public class Test {
         //RedAstronaut player3 = new RedAstronaut("Amor", 5, "experienced");
         //RedAstronaut player4 = new RedAstronaut("Paige", 12, "experienced");
         System.out.println("Tanner is frozen: " + player2.isFrozen());
-        player2.emergencyMeeting();
+        player1.freeze(player2);
         System.out.println("Tanner is frozen: " + player2.isFrozen());
-        System.out.println("Brad is frozen: " + player1.isFrozen());
+        System.out.println(player1.getSusLevel());
     }
 }
