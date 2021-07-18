@@ -1,4 +1,5 @@
 import java.util.Arrays;
+
 public class RedAstronaut extends Player implements Impostor {
     // Instance variables
     private String skill;
@@ -10,6 +11,11 @@ public class RedAstronaut extends Player implements Impostor {
     public RedAstronaut(String name, int susLevel,String skill) {
         super(name, susLevel);
         this.skill = skill;
+    }
+
+    // Getters
+    public String getSkill(){
+        return this.skill;
     }
 
     // Super Class Abstract Method Definitions
@@ -51,7 +57,6 @@ public class RedAstronaut extends Player implements Impostor {
     public void freeze(Player p) {
         // Do not freeze if is an imposter or player already frozen or attacking player is frozen
         if (p instanceof RedAstronaut || p.isFrozen() || this.isFrozen()) {
-            System.out.println("You can't freeze me BIIITCH!");
             return;
         }
         // Attempt to freeze
@@ -64,11 +69,33 @@ public class RedAstronaut extends Player implements Impostor {
             this.setSusLevel(this.getSusLevel()*2);
         }
         gameOver();
-        // Unsuccessful freeze
-
     }
 
     public void sabotage(Player p) {
-        return;
+        double multiplier;
+        // Check if possible to sabotage
+        if (p instanceof RedAstronaut || p.isFrozen() || this.isFrozen()) {
+            return;
+        }
+        // Commit sabotage
+        if (this.getSusLevel() < 20) {
+            multiplier = 0.5;
+        }
+        else {
+            multiplier = 0.25;
+        }
+        p.setSusLevel((int) (p.getSusLevel()*(1+multiplier)));
     }
+
+    // Overrides
+    public boolean equals(Object o) {
+        if (o instanceof RedAstronaut) {
+            RedAstronaut compareRed = (RedAstronaut) o;
+            if (compareRed.getName() == this.getName() && compareRed.getSusLevel() == this.getSusLevel() && compareRed.getSkill() == this.getSkill()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
