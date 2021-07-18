@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Locale;
 
 public class RedAstronaut extends Player implements Impostor {
     // Instance variables
@@ -98,4 +99,9 @@ public class RedAstronaut extends Player implements Impostor {
         return false;
     }
 
+    public String toString(){
+        String myString = super.toString();
+        myString += " I am an " + getSkill() + " player!";
+        return getSusLevel() > 20 ? myString : myString.toUpperCase(Locale.ROOT);
+    }
 }
