@@ -1,5 +1,4 @@
 import java.util.Arrays;
-import java.util.Locale;
 
 public class RedAstronaut extends Player implements Impostor {
     // Instance variables
@@ -64,7 +63,6 @@ public class RedAstronaut extends Player implements Impostor {
         // Successful freeze
         if (this.getSusLevel() < p.getSusLevel()) {
             p.setFrozen(true);
-            return;
         }
         else {
             this.setSusLevel(this.getSusLevel()*2);
@@ -89,6 +87,7 @@ public class RedAstronaut extends Player implements Impostor {
     }
 
     // Overrides
+    @Override
     public boolean equals(Object o) {
         if (o instanceof RedAstronaut) {
             RedAstronaut compareRed = (RedAstronaut) o;
@@ -99,9 +98,10 @@ public class RedAstronaut extends Player implements Impostor {
         return false;
     }
 
+    @Override
     public String toString(){
         String myString = super.toString();
         myString += " I am an " + getSkill() + " player!";
-        return getSusLevel() > 20 ? myString : myString.toUpperCase(Locale.ROOT);
+        return getSusLevel() <= 15 ? myString : myString.toUpperCase();
     }
 }
